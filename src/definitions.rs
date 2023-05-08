@@ -1,4 +1,4 @@
-use std::convert::{TryFrom, TryInto};
+use std::convert::TryFrom;
 
 use packageurl::PackageUrl;
 use serde::{Deserialize, Serialize};
@@ -23,6 +23,7 @@ pub struct Acknowledgment {
 pub struct BranchesT(pub Vec<Branch>);
 
 impl BranchesT {
+    #[cfg(feature = "rustsec")]
     pub(crate) fn product_ids(&self) -> Option<Vec<ProductIdT>> {
         if self.0.is_empty() {
             None
